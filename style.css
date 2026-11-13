@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&family=Cairo:wght@400;600;800&display=swap');
+
+body {
+    font-family: 'Inter', 'Cairo', sans-serif;
+    background-color: #07070a;
+    color: #e2e8f0;
+    overflow: hidden;
+}
+
+.font-mono-code {
+    font-family: 'Fira Code', monospace;
+}
+
+.glass-panel {
+    background: rgba(15, 15, 24, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.room-btn-active {
+    background: rgba(168, 85, 247, 0.3) !important;
+    border-color: rgba(168, 85, 247, 0.8) !important;
+    color: #ffffff !important;
+}
+
+/* Inventory Slot Highlight */
+.inv-slot {
+    transition: all 0.2s ease;
+}
+.inv-slot:hover {
+    border-color: rgba(56, 189, 248, 0.8);
+    transform: translateY(-2px);
+}
+.inv-slot.selected {
+    border-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    background: rgba(56, 189, 248, 0.15);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 4px; }
+
+@keyframes floatGlow {
+    0%, 100% { transform: translateY(0px); box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+    50% { transform: translateY(-6px); box-shadow: 0 0 35px rgba(56, 189, 248, 0.6); }
+}
+.studio-badge {
+    animation: floatGlow 3s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55), 0 8px 24px rgba(245, 158, 11, 0.35); }
+    50% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0), 0 8px 24px rgba(245, 158, 11, 0.55); }
+}
+.hint-btn { animation: hintPulse 2.2s ease-in-out infinite; transition: transform 0.15s ease; }
+.hint-btn:hover { transform: translateY(-3px) scale(1.03); }
+.hint-btn:active { transform: scale(0.96); }
+.hint-btn.disabled { animation: none; filter: grayscale(0.9); opacity: 0.55; pointer-events: none; }
+@keyframes kingGlow {
+    0%, 100% { box-shadow: 0 0 25px rgba(251, 191, 36, 0.45); }
+    50% { box-shadow: 0 0 60px rgba(251, 191, 36, 0.9); }
+}
+.king-card { border-color: #fbbf24 !important; animation: kingGlow 1.8s ease-in-out infinite; }
+.king-text {
+    background: linear-gradient(90deg, #fde68a, #f59e0b, #fde68a);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.zd-logo-start { width: 104px; height: 104px; filter: drop-shadow(0 0 18px rgba(168, 85, 247, 0.65)); animation: logoFloat 3.2s ease-in-out infinite; }
+.zd-logo-head { width: 44px; height: 44px; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6)); }
+@keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Inventory: hexagon slots with real item art */
+.inv-hex { position: relative; width: 54px; height: 60px; flex-shrink: 0; transition: transform 0.2s ease; }
+.inv-hex:hover { transform: translateY(-3px) scale(1.06); }
+.hex { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+.hex-border { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.14); }
+.hex-inner { position: absolute; inset: 2px; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 50% 30%, rgba(40, 40, 64, 0.95), rgba(8, 8, 16, 0.98)); }
+.inv-hex.filled { filter: drop-shadow(0 0 7px var(--c, #38bdf8)); }
+.inv-hex.filled .hex-border { background: linear-gradient(160deg, var(--c, #38bdf8), rgba(255, 255, 255, 0.25)); }
+.inv-hex.empty .hex-border { background: rgba(148, 163, 184, 0.22); }
+.hex-empty-mark { color: rgba(148, 163, 184, 0.35); font-size: 15px; font-weight: 700; }
+.item-art { width: 36px; height: 36px; animation: itemFloat 2.6s ease-in-out infinite; }
+.item-art svg { width: 100%; height: 100%; overflow: visible; }
+@keyframes itemFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.item-pop { animation: itemPop 0.7s cubic-bezier(0.2, 1.5, 0.4, 1); }
+@keyframes itemPop { 0% { transform: scale(0.2) rotate(-25deg); opacity: 0; } 100% { transform: scale(1) rotate(0); opacity: 1; } }
